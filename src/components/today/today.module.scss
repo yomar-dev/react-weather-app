@@ -1,6 +1,9 @@
 .sidebar {
   background-color: #1e213a;
-  background-size: contain;
+  background-image: url('../../assets/images/cloud-background.png');
+  background-repeat: no-repeat;
+  background-blend-mode: soft-light;
+  background-position: left -110px top 100px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
