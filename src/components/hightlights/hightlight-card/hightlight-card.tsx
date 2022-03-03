@@ -1,17 +1,19 @@
 import styles from './hightlight-card.module.scss';
 
-function HightlightCard() {
+interface Props {
+  title: string;
+  value: number;
+  unit: string;
+}
+
+function HightlightCard({ title, value, unit }: Props) {
   return (
     <div className={styles.card}>
-      <p className={styles.card__title}>Wind status</p>
+      <p className={styles.card__title}>{title}</p>
       <div className={styles['card-body']}>
-        <span className={styles['card-body__value']}>7</span>
-        <span className={styles['card-body__unit']}>mph</span>
+        <span className={styles['card-body__value']}>{value}</span>
+        <span className={styles['card-body__unit']}>{unit}</span>
       </div>
-      <footer className={styles['card-footer']}>
-        <span className="material-icons">navigation</span>
-        <span className={styles['card-footer__content']}>WSW</span>
-      </footer>
     </div>
   );
 }
