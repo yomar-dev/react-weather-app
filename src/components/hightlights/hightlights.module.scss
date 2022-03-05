@@ -1,0 +1,23 @@
+.hightlights {
+  color: #e7e7eb;
+  display: flex;
+  flex-direction: column;
+
+  &__title {
+    font-size: 24px;
+    margin-bottom: 32px;
+  }
+
+  &-body {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-row {
+    display: flex;
+    justify-content: space-between;
+    &:not(:last-child) {
+      margin-bottom: 48px;
+    }
+  }
+}
