@@ -6,8 +6,8 @@
   align-items: center;
   justify-content: space-between;
   font-size: 16px;
-  padding: 18px 14px;
-  width: 120px;
+  padding: 18px 12px;
+  min-width: 120px;
   height: 177px;
 
   &__image {
@@ -17,7 +17,7 @@
 
   &-footer {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 100%;
     &__temp-min {
       color: #a09fb1;

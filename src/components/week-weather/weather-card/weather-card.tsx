@@ -4,20 +4,20 @@ import styles from './weather-card.module.scss';
 import showerImg from '../../../assets/images/shower.png';
 
 interface Props {
-  title: string;
+  date: string;
   image?: string;
   tempMax: number;
   tempMin: number;
 }
 
-function WeatherCard({ title, image = showerImg, tempMax, tempMin }: Props) {
+function WeatherCard({ date, image = showerImg, tempMax, tempMin }: Props) {
   return (
     <div className={styles.card}>
-      <p className={styles.card__title}>{title}</p>
+      <p className={styles.card__title}>{date}</p>
       <figure className={styles['card__image-container']}>
         <img
           src={image}
-          alt={`${title} weather`}
+          alt={`${date} weather`}
           className={styles.card__image}
         />
       </figure>
