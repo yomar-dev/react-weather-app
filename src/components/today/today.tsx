@@ -1,6 +1,7 @@
 import styles from './today.module.scss';
 import showerImg from '../../assets/images/shower.png';
 import ConsolidatedWeather from '../../models/consolidated_weather';
+import { getWeatherImage } from '../../utils/weatherImages';
 
 interface Props {
   city: string;
@@ -8,7 +9,8 @@ interface Props {
 }
 
 function Today({ city, weather }: Props) {
-  const { weather_state_name, the_temp, applicable_date } = weather;
+  const { weather_state_name, the_temp, applicable_date, weather_state_abbr } =
+    weather;
 
   let formattedDate = new Intl.DateTimeFormat('en', {
     weekday: 'short',
@@ -29,13 +31,13 @@ function Today({ city, weather }: Props) {
       <section className={styles['sidebar-main']}>
         <figure className={styles['sidebar-main__figure']}>
           <img
-            src={showerImg}
+            src={getWeatherImage(weather_state_abbr)}
             alt="Today weather image"
             className={styles['sidebar-main__image']}
           />
         </figure>
         <h2 className={styles['sidebar-main__temperature']}>
-          {the_temp}
+          {the_temp.toFixed(1)}
           <span className={styles['sidebar-main__temperature-unit']}>
             &#8451;
           </span>
