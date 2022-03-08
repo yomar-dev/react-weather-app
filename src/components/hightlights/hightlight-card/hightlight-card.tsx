@@ -11,7 +11,7 @@ function HightlightCard({ title, value, unit }: Props) {
     <div className={styles.card}>
       <p className={styles.card__title}>{title}</p>
       <div className={styles['card-body']}>
-        <span className={styles['card-body__value']}>{value.toFixed(1)}</span>
+        <span className={styles['card-body__value']}>{Math.round(value)}</span>
         <span className={styles['card-body__unit']}>{unit}</span>
       </div>
     </div>
