@@ -1,22 +1,22 @@
 import React from 'react';
 
 import styles from './weather-card.module.scss';
-import showerImg from '../../../assets/images/shower.png';
+import { getWeatherImage } from '../../../utils/weatherImages';
 
 interface Props {
   date: string;
-  image?: string;
+  stateAbbr: string;
   tempMax: number;
   tempMin: number;
 }
 
-function WeatherCard({ date, image = showerImg, tempMax, tempMin }: Props) {
+function WeatherCard({ date, stateAbbr = 't', tempMax, tempMin }: Props) {
   return (
     <div className={styles.card}>
       <p className={styles.card__title}>{date}</p>
       <figure className={styles['card__image-container']}>
         <img
-          src={image}
+          src={getWeatherImage(stateAbbr)}
           alt={`${date} weather`}
           className={styles.card__image}
         />

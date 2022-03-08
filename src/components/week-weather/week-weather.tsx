@@ -12,7 +12,8 @@ function WeekWeather({ weekWeather }: Props) {
     <section className={styles.container}>
       {weekWeather &&
         weekWeather.map((weather: ConsolidatedWeather) => {
-          let { id, max_temp, min_temp, applicable_date } = weather;
+          let { id, weather_state_abbr, max_temp, min_temp, applicable_date } =
+            weather;
           let formattedDate = new Intl.DateTimeFormat('en', {
             weekday: 'short',
             day: '2-digit',
@@ -22,6 +23,7 @@ function WeekWeather({ weekWeather }: Props) {
           return (
             <WeatherCard
               date={formattedDate}
+              stateAbbr={weather_state_abbr}
               tempMax={Math.round(max_temp)}
               tempMin={Math.round(min_temp)}
               key={id}
