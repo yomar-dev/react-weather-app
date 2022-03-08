@@ -28,19 +28,11 @@
     display: flex;
     align-items: center;
     margin-top: 28px;
-
-    & span:nth-child(1) {
-      display: inline-block;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3);
-      transform: rotate(-135deg);
-      padding: 2px;
-      font-size: 16px;
-    }
+    width: 100%;
 
     &__content {
-      font-size: 14px;
-      margin-left: 8px;
+      width: 100%;
+      padding: 0 50px;
     }
   }
 }
