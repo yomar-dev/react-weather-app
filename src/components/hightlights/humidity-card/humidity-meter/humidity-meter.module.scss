@@ -1,0 +1,29 @@
+.meter {
+  font-size: 12px;
+  font-weight: 700;
+
+  &__scale {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__indicator {
+    width: 100%;
+
+    &::-webkit-meter-bar {
+      background: #e7e7eb;
+      border-radius: 80px;
+    }
+
+    &::-webkit-meter-optimum-value,
+    &::-webkit-meter-suboptimum-value,
+    &::-webkit-meter-even-less-good-value {
+      background: #ffec65;
+      border-radius: 80px;
+    }
+  }
+
+  &__footer {
+    text-align: right;
+  }
+}
