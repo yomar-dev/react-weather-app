@@ -1,4 +1,5 @@
 import styles from './humidity-card.module.scss';
+import HumidityMeter from './humidity-meter/humidity-meter';
 
 interface Props {
   value: number;
@@ -14,8 +15,9 @@ function HumidityCard({ value, unit }: Props) {
         <span className={styles['card-body__unit']}>{unit}</span>
       </div>
       <footer className={styles['card-footer']}>
-        <span className="material-icons">navigation</span>
-        <span className={styles['card-footer__content']}>WSW</span>
+        <div className={styles['card-footer__content']}>
+          <HumidityMeter value={value} />
+        </div>
       </footer>
     </div>
   );
