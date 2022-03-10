@@ -1,0 +1,12 @@
+.footer {
+  color: #bdbdbd;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  text-align: center;
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    font-weight: bold;
+  }
+}

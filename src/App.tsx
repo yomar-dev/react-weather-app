@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Sidebar from './components/sidebar/sidebar';
 import Hightlights from './components/hightlights/hightlights';
 import WeekWeather from './components/week-weather/week-weather';
+import Footer from './components/footer/footer';
 
 import styles from './App.module.scss';
 import PlaceLocation from './models/location';
@@ -70,9 +71,12 @@ function App() {
         <div className={styles.week}>
           <WeekWeather weekWeather={weekWeather} />
         </div>
+
         <div className={styles.hightlights}>
           {weatherToday && <Hightlights weather={weatherToday} />}
         </div>
+
+        <Footer />
       </section>
     </div>
   );
