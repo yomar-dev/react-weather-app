@@ -1,14 +1,14 @@
 import styles from './today.module.scss';
-import showerImg from '../../assets/images/shower.png';
 import ConsolidatedWeather from '../../models/consolidated_weather';
 import { getWeatherImage } from '../../utils/weatherImages';
 
 interface Props {
   city: string;
   weather: ConsolidatedWeather;
+  onDisplayWeather: (boolean) => void;
 }
 
-function Today({ city, weather }: Props) {
+function Today({ city, weather, onDisplayWeather }: Props) {
   const { weather_state_name, the_temp, applicable_date, weather_state_abbr } =
     weather;
 
@@ -19,10 +19,17 @@ function Today({ city, weather }: Props) {
     timeZone: 'America/Bogota',
   }).format(new Date(applicable_date));
 
+  const searchButtonHandler = () => {
+    onDisplayWeather(false);
+  };
+
   return (
     <div className={styles.sidebar}>
       <header className={styles['sidebar-header']}>
-        <button className={styles['sidebar-header__button']}>
+        <button
+          className={styles['sidebar-header__button']}
+          onClick={searchButtonHandler}
+        >
           Seach for places
         </button>
         <span className="material-icons">my_location</span>

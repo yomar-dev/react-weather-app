@@ -1,6 +1,14 @@
 import styles from './search.module.scss';
 
-function Search() {
+interface Props {
+  onDisplayWeather: (boolean) => void;
+}
+
+function Search({ onDisplayWeather }: Props) {
+  const closeSearchHandler = () => {
+    onDisplayWeather(true);
+  };
+
   return (
     <div className={styles.search}>
       <form className={styles.form}>
@@ -21,7 +29,7 @@ function Search() {
         <li className={styles.list__item}>Ámsterdam</li>
       </ul>
 
-      <button className={styles.search__icon}>
+      <button className={styles.search__icon} onClick={closeSearchHandler}>
         <span className="material-icons">close</span>
       </button>
     </div>
