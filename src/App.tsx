@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-import Today from './components/today/today';
+import Sidebar from './components/sidebar/sidebar';
 import Hightlights from './components/hightlights/hightlights';
 import WeekWeather from './components/week-weather/week-weather';
 
@@ -13,19 +13,20 @@ const PROXY_URL = 'https://afternoon-ridge-35420.herokuapp.com';
 
 function App() {
   const [city, setCity] = useState('');
+  const [userCity, setUserCity] = useState('');
   const [location, setLocation] = useState<PlaceLocation>(null);
   const [weatherToday, setWeatherToday] = useState<ConsolidatedWeather>(null);
   const [weekWeather, setWeekWeather] = useState<ConsolidatedWeather[]>([]);
 
   useEffect(() => {
-    fetch(`${PROXY_URL}/${API_URL}/search/?query=london`)
-      .then((response) => response.json())
-      .then((data: PlaceLocation[]) => {
-        if (data.length) {
-          setLocation(data[0]);
-        }
-      });
+    searchCity('bogotá');
   }, []);
+
+  useEffect(() => {
+    if (userCity) {
+      searchCity(userCity);
+    }
+  }, [userCity]);
 
   useEffect(() => {
     if (location) {
@@ -43,10 +44,27 @@ function App() {
     }
   }, [location]);
 
+  const searchCity = async (city: string) => {
+    const req = await fetch(`${PROXY_URL}/${API_URL}/search/?query=${city}`);
+    const response: PlaceLocation[] = await req.json();
+
+    if (response.length) {
+      setLocation(response[0]);
+    } else {
+      console.log(`Sorry, weather forecast not available for ${city}!`);
+    }
+  };
+
   return (
     <div className={styles.app}>
       <aside className={styles.sidebar}>
-        {weatherToday && <Today city={city} weather={weatherToday} />}
+        {weatherToday && (
+          <Sidebar
+            city={city}
+            weather={weatherToday}
+            updateUserCity={setUserCity}
+          />
+        )}
       </aside>
       <section className={styles.container}>
         <div className={styles.week}>

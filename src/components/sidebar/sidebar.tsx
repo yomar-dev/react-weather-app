@@ -9,9 +9,10 @@ import ConsolidatedWeather from '../../models/consolidated_weather';
 interface Props {
   city: string;
   weather: ConsolidatedWeather;
+  updateUserCity: (city: string) => void;
 }
 
-function Sidebar({ city, weather }: Props) {
+function Sidebar({ city, weather, updateUserCity }: Props) {
   const [displayWeather, setDisplayWeather] = useState(true);
 
   return (
@@ -23,7 +24,10 @@ function Sidebar({ city, weather }: Props) {
           onDisplayWeather={setDisplayWeather}
         />
       ) : (
-        <Search onDisplayWeather={setDisplayWeather} />
+        <Search
+          onDisplayWeather={setDisplayWeather}
+          onUserCity={updateUserCity}
+        />
       )}
     </div>
   );
