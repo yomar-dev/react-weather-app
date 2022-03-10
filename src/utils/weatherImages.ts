@@ -6,6 +6,7 @@ import heavyRain from '../assets/images/weather/hr.png';
 import lightRain from '../assets/images/weather/lr.png';
 import showers from '../assets/images/weather/s.png';
 import heavyCloud from '../assets/images/weather/hc.png';
+import lightCloud from '../assets/images/weather/lc.png';
 import clear from '../assets/images/weather/c.png';
 
 const weatherImages = {
@@ -17,6 +18,7 @@ const weatherImages = {
   lr: lightRain,
   s: showers,
   hc: heavyCloud,
+  lc: lightCloud,
   c: clear,
 };
 
