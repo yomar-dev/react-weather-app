@@ -3,3 +3,9 @@
   max-width: 460px;
   min-height: 100vh;
 }
+
+@media (max-width: 960px) {
+  .sidebar {
+    max-width: 100%;
+  }
+}

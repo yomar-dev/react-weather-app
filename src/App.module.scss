@@ -24,11 +24,21 @@
 }
 
 .hightlights {
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .week,
 .hightlights {
   max-width: 704px;
   width: 100%;
+}
+
+@media (max-width: 960px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
 }
