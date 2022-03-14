@@ -56,6 +56,10 @@ function App() {
     }
   };
 
+  if (!weatherToday) {
+    return <div className={styles.loading}>Loading...</div>;
+  }
+
   return (
     <div className={styles.app}>
       <aside className={styles.sidebar}>
