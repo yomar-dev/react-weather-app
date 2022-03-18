@@ -79,7 +79,7 @@ function App() {
         </div>
 
         <div className={styles.hightlights}>
-          {weatherToday && <Hightlights />}
+          <Hightlights />
         </div>
         <Footer />
       </section>
