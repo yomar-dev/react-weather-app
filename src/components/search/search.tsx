@@ -1,20 +1,23 @@
 import { useState } from 'react';
 
+import { useDispatch } from 'react-redux';
+import { setUserCity } from '../../store/features/weather/weather-slice';
+
 import styles from './search.module.scss';
 
 interface Props {
   onDisplayWeather: (displayWeather: boolean) => void;
-  onUserCity: (city: string) => void;
 }
 
-function Search({ onDisplayWeather, onUserCity }: Props) {
+function Search({ onDisplayWeather }: Props) {
+  const dispatch = useDispatch();
+
   const [city, setCity] = useState('');
 
   const submitHandler = (event) => {
     event.preventDefault();
     const userCity = city.toLowerCase();
     onUserCity(userCity);
-    setCity('');
   };
 
   const handleInputSearch = (event) => {
@@ -23,6 +26,11 @@ function Search({ onDisplayWeather, onUserCity }: Props) {
 
   const closeSearchHandler = () => {
     onDisplayWeather(true);
+  };
+
+  const onUserCity = (city: string) => {
+    dispatch(setUserCity(city));
+    setCity('');
   };
 
   return (

@@ -1,16 +1,17 @@
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
+
 import HightlightCard from './hightlight-card/hightlight-card';
 import HumidityCard from './humidity-card/humidity-card';
 import WindStatusCard from './wind-status-card/wind-status-card';
 
 import styles from './hightlights.module.scss';
-import ConsolidatedWeather from '../../models/consolidated_weather';
 
-interface Props {
-  weather: ConsolidatedWeather;
-}
+function Hightlights() {
+  const { weatherToday } = useSelector((state: RootState) => state.weather);
 
-function Hightlights({ weather }: Props) {
-  const { wind_speed, humidity, visibility, air_pressure } = weather;
+  const { wind_speed, humidity, visibility, air_pressure } = weatherToday;
+
   return (
     <section className={styles.hightlights}>
       <h2 className={styles.hightlights__title}>Today’s Hightlights </h2>

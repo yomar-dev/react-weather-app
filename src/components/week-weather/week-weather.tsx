@@ -1,13 +1,14 @@
 import WeatherCard from './weather-card/weather-card';
 
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
+
 import styles from './week-weather.module.scss';
-import ConsolidatedWeather from '../../models/consolidated_weather';
+import { ConsolidatedWeather } from '../../models';
 
-interface Props {
-  weekWeather: ConsolidatedWeather[];
-}
+function WeekWeather() {
+  const { weekWeather } = useSelector((state: RootState) => state.weather);
 
-function WeekWeather({ weekWeather }: Props) {
   return (
     <section className={styles.container}>
       {weekWeather &&

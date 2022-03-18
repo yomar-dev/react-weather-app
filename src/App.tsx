@@ -1,4 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+
+import { RootState } from './store';
+import { useSelector, useDispatch } from 'react-redux';
+
+import {
+  setCity,
+  setLocation,
+  setTodayWeather,
+  setWeekWeather,
+} from './store/features/weather/weather-slice';
 
 import Sidebar from './components/sidebar/sidebar';
 import Hightlights from './components/hightlights/hightlights';
@@ -6,18 +16,16 @@ import WeekWeather from './components/week-weather/week-weather';
 import Footer from './components/footer/footer';
 
 import styles from './App.module.scss';
-import PlaceLocation from './models/location';
-import ConsolidatedWeather from './models/consolidated_weather';
+import { PlaceLocation } from './models';
 
 const API_URL = 'https://www.metaweather.com/api/location';
 const PROXY_URL = 'https://afternoon-ridge-35420.herokuapp.com';
 
 function App() {
-  const [city, setCity] = useState('');
-  const [userCity, setUserCity] = useState('');
-  const [location, setLocation] = useState<PlaceLocation>(null);
-  const [weatherToday, setWeatherToday] = useState<ConsolidatedWeather>(null);
-  const [weekWeather, setWeekWeather] = useState<ConsolidatedWeather[]>([]);
+  const { userCity, location, weatherToday, weekWeather } = useSelector(
+    (state: RootState) => state.weather
+  );
+  const dispatch = useDispatch();
 
   useEffect(() => {
     searchCity('bogotá');
@@ -37,9 +45,9 @@ function App() {
           if (data) {
             const city = data.title;
             const weatherList = data.consolidated_weather;
-            setCity(city);
-            setWeatherToday(weatherList[0]);
-            setWeekWeather(weatherList.slice(1));
+            dispatch(setCity(city));
+            dispatch(setTodayWeather(weatherList[0]));
+            dispatch(setWeekWeather(weatherList.slice(1)));
           }
         });
     }
@@ -50,36 +58,29 @@ function App() {
     const response: PlaceLocation[] = await req.json();
 
     if (response.length) {
-      setLocation(response[0]);
+      dispatch(setLocation(response[0]));
     } else {
       console.log(`Sorry, weather forecast not available for ${city}!`);
     }
   };
 
-  if (!weatherToday) {
+  if (!weatherToday || !weekWeather) {
     return <div className={styles.loading}>Loading...</div>;
   }
 
   return (
     <div className={styles.app}>
       <aside className={styles.sidebar}>
-        {weatherToday && (
-          <Sidebar
-            city={city}
-            weather={weatherToday}
-            updateUserCity={setUserCity}
-          />
-        )}
+        <Sidebar />
       </aside>
       <section className={styles.container}>
         <div className={styles.week}>
-          <WeekWeather weekWeather={weekWeather} />
+          <WeekWeather />
         </div>
 
         <div className={styles.hightlights}>
-          {weatherToday && <Hightlights weather={weatherToday} />}
+          <Hightlights />
         </div>
-
         <Footer />
       </section>
     </div>
