@@ -3,7 +3,7 @@ import HumidityCard from './humidity-card/humidity-card';
 import WindStatusCard from './wind-status-card/wind-status-card';
 
 import styles from './hightlights.module.scss';
-import ConsolidatedWeather from '../../models/consolidated_weather';
+import { ConsolidatedWeather } from '../../models';
 
 interface Props {
   weather: ConsolidatedWeather;
