@@ -3,7 +3,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { PlaceLocation, ConsolidatedWeather } from '../../../models';
 
 interface WeatherState {
-  isLoading: boolean;
   city: string;
   userCity: string;
   location: PlaceLocation;
@@ -12,7 +11,6 @@ interface WeatherState {
 }
 
 const initialState: WeatherState = {
-  isLoading: false,
   city: 'bogotá',
   userCity: '',
   location: null,
@@ -24,9 +22,6 @@ export const weatherSlice = createSlice({
   name: 'weather',
   initialState,
   reducers: {
-    setIsLoading: (state, action: PayloadAction<boolean>) => {
-      state.isLoading = action.payload;
-    },
     setCity: (state, action: PayloadAction<string>) => {
       state.city = action.payload;
     },
@@ -47,7 +42,6 @@ export const weatherSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
-  setIsLoading,
   setCity,
   setUserCity,
   setLocation,
