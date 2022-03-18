@@ -1,16 +1,20 @@
+import { RootState } from '../../store';
+import { useSelector } from 'react-redux';
+
 import styles from './today.module.scss';
-import ConsolidatedWeather from '../../models/consolidated_weather';
 import { getWeatherImage } from '../../utils/weatherImages';
 
 interface Props {
-  city: string;
-  weather: ConsolidatedWeather;
   onDisplayWeather: (boolean) => void;
 }
 
-function Today({ city, weather, onDisplayWeather }: Props) {
+function Today({ onDisplayWeather }: Props) {
+  const { city, weatherToday } = useSelector(
+    (state: RootState) => state.weather
+  );
+
   const { weather_state_name, the_temp, applicable_date, weather_state_abbr } =
-    weather;
+    weatherToday;
 
   let formattedDate = new Intl.DateTimeFormat('en', {
     weekday: 'short',
