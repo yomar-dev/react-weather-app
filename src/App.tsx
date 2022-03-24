@@ -10,6 +10,7 @@ import {
   setWeekWeather,
 } from './store/features/weather/weather-slice';
 
+import Units from './components/units/units';
 import Sidebar from './components/sidebar/sidebar';
 import Hightlights from './components/hightlights/hightlights';
 import WeekWeather from './components/week-weather/week-weather';
@@ -75,6 +76,7 @@ function App() {
       </aside>
       <section className={styles.container}>
         <div className={styles.week}>
+          <Units />
           <WeekWeather />
         </div>
 
