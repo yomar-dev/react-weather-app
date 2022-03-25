@@ -7,7 +7,9 @@ import styles from './week-weather.module.scss';
 import { ConsolidatedWeather } from '../../models';
 
 function WeekWeather() {
-  const { weekWeather } = useSelector((state: RootState) => state.weather);
+  const { weekWeather, unit } = useSelector(
+    (state: RootState) => state.weather
+  );
 
   return (
     <section className={styles.container}>
@@ -21,12 +23,14 @@ function WeekWeather() {
             month: 'short',
             timeZone: 'America/Bogota',
           }).format(new Date(applicable_date));
+
           return (
             <WeatherCard
               date={formattedDate}
               stateAbbr={weather_state_abbr}
-              tempMax={Math.round(max_temp)}
-              tempMin={Math.round(min_temp)}
+              tempMax={max_temp}
+              tempMin={min_temp}
+              unit={unit}
               key={id}
             />
           );

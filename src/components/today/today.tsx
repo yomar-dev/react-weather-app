@@ -4,17 +4,25 @@ import { useSelector } from 'react-redux';
 import styles from './today.module.scss';
 import { getWeatherImage } from '../../utils/weatherImages';
 
+import WeatherUnits from '../../models/weather-units';
+import { convertToFahrenheit } from '../../utils/units';
+
 interface Props {
   onDisplayWeather: (boolean) => void;
 }
 
 function Today({ onDisplayWeather }: Props) {
-  const { city, weatherToday } = useSelector(
+  const { unit, city, weatherToday } = useSelector(
     (state: RootState) => state.weather
   );
 
   const { weather_state_name, the_temp, applicable_date, weather_state_abbr } =
     weatherToday;
+
+  const todayTemp =
+    unit === WeatherUnits.Fahrenheit
+      ? convertToFahrenheit(the_temp).toFixed(1)
+      : the_temp.toFixed(1);
 
   let formattedDate = new Intl.DateTimeFormat('en', {
     weekday: 'short',
@@ -48,9 +56,9 @@ function Today({ onDisplayWeather }: Props) {
           />
         </figure>
         <h2 className={styles['sidebar-main__temperature']}>
-          {the_temp.toFixed(1)}
+          {todayTemp}
           <span className={styles['sidebar-main__temperature-unit']}>
-            &#8451;
+            {unit === WeatherUnits.Celsius ? '°C' : '°F'}
           </span>
         </h2>
         <p className={styles['sidebar-main__weather-state']}>

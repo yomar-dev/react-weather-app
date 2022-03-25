@@ -1,0 +1,25 @@
+.units {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+}
+
+.unit {
+  background: #585676;
+  border: 0;
+  border-radius: 50%;
+  color: #e7e7eb;
+  cursor: pointer;
+  font-size: 18px;
+  width: 40px;
+  height: 40px;
+
+  &:not(:last-child) {
+    margin-right: 12px;
+  }
+
+  &--selected {
+    background: #e7e7eb;
+    color: #110e3c;
+  }
+}

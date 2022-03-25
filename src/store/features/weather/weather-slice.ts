@@ -2,7 +2,10 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { PlaceLocation, ConsolidatedWeather } from '../../../models';
 
+import WeatherUnits from '../../../models/weather-units';
+
 interface WeatherState {
+  unit: WeatherUnits;
   city: string;
   userCity: string;
   location: PlaceLocation;
@@ -11,6 +14,7 @@ interface WeatherState {
 }
 
 const initialState: WeatherState = {
+  unit: WeatherUnits.Celsius,
   city: 'bogotá',
   userCity: '',
   location: null,
@@ -37,6 +41,9 @@ export const weatherSlice = createSlice({
     setWeekWeather: (state, action: PayloadAction<ConsolidatedWeather[]>) => {
       state.weekWeather = action.payload;
     },
+    setUnit: (state, action: PayloadAction<WeatherUnits>) => {
+      state.unit = action.payload;
+    },
   },
 });
 
@@ -47,6 +54,7 @@ export const {
   setLocation,
   setTodayWeather,
   setWeekWeather,
+  setUnit,
 } = weatherSlice.actions;
 
 export default weatherSlice.reducer;
